@@ -2,29 +2,30 @@
 # Application.Configuration_ApplyPolybase
 
 ## Business Purpose
-The `Configuration_ApplyPolybase` procedure is designed to configure Polybase connectivity in SQL Server. It checks if Polybase is installed and if Hadoop connectivity is properly set. If both conditions are met, it creates external data sources and file formats to enable Polybase for Azure Storage connections.
+The `Configuration_ApplyPolybase` procedure is designed to set up an external data source, file format,
+and table for PolyBase connectivity. This enables the importing of data from an Azure Storage blob into a SQL Server via PolyBase, provided all ring configurations and permissions are set correctly.
 
 ## Parameters
-| Name | Type | Direction | Default |
-|------|------|-----------|--------|
-| — | — | — | — |
+This stored procedure does not take any parameters.
 
 ## Tables
-| Table | Operations |
-|-------|------------|
-| dbo.CityPopulationStatistics | CREATE |
+| Table                     | Operations            |
+|------------------------------|-----------------------------------|
+| dbo.CityPopulationStatistics | External Table Creation |'
 
 ## Calls
-Dynamic SQL execution.
+No internal stored procedures or functions are explicitly called within this stored procedure.
 
 ## Business Rules
-- Ensures Polybase can be installed or has been installed.
-- Verifies Hadoop connectivity is configured correctly before proceeding.
-- Creates external resources to provide data connectivity to Azure.
+Checks if PolyBase is installed on the server.
+ensures the Hadoop connectivity option is set to an acceptable value (1, 4, or 7) for Azure Storage.
+configures external storage and file format ryquired for PolyBase operations.
+
 
 ## Technical Debt
-| Item | Severity |
-|------|----------|
-| Dynamic SQL without Input Validation | High |
-| Missing TRY/CATCH for External Resource Creation | Medium |
-| Hard-Coded Strings | Medium |
+| Item                              | Severity |
+|-------------------------------.-----------|
+|Error Handling Limitations        | Medium |
+| Use of Dynamic SQL(EXECUTE @SQK#) | Medium |
+{Missing Parameterrization         | Medium |
+|Dependency on Server Property Settings   | High  |
