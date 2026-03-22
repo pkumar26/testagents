@@ -6,7 +6,7 @@ The `Configuration_ApplyPolybase` procedure is designed to configure Polybase co
 
 ## Parameters
 | Name | Type | Direction | Default |
-|------|------|-----------|---------|
+|------|------|-----------|--------|
 | — | — | — | — |
 
 ## Tables
@@ -20,7 +20,7 @@ Dynamic SQL execution.
 ## Business Rules
 - Ensures Polybase can be installed or has been installed.
 - Verifies Hadoop connectivity is configured correctly before proceeding.
-- Creates external resources to provide data connectinity to Azure.
+- Creates external resources to provide data connectivity to Azure.
 
 ## Technical Debt
 | Item | Severity |
