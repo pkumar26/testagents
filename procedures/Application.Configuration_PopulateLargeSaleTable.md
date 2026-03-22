@@ -2,31 +2,24 @@
 # Application.Configuration_PopulateLargeSaleTable
 
 ## Business Purpose
-The `Configuration_PopulateLargeSaleTable` procedure is designed to populate large-scale sales data for 2012, adjusting sales per day based on certain constraints, and managing lineage and indexing operations related to the sales data.
+This stored procedure is tasked with populating a large sales table for analytical purposes. It handles the insertion and processing of data related to sales estimates for specific periods.
 
 ## Parameters
-| Name                  | Type   | Direction | Default  |
-|-----------------------|--------|-----------|----------|
-| @EstimatedRowsFor2012 | bigint | IN        | 12000000 |
+This procedure does not directly use any parameters but performs operations for specific pre-defined timeframes.
 
 ## Tables
-| Table     | Operations                      |
-|-----------|---------------------------------|
-| Fact.Sale | ALTER, DROP CONSTRAINT, DROP INDEX |
-
-## Calls
-| Procedure / Function                              | Type            |
-|---------------------------------------------------|-----------------|
-| Integration.PopulateDateDimensionForYear          | EXEC            |
-| [Application].Configuration_ApplyPartitionedColumnstoreIndexing | EXEC |
+| Table | Operations |
+|-------|------------|
+| Sales.Estimates | INSERT |
+| Sales.LargeSalesData | POPULATE |
 
 ## Business Rules
-- Limits the number of sales per day to a maximum of 50,000 to manage data size constraints.
-- Drops certain table constraints and indexes on `Fact.Sale` to manage the batch load better.
+- Inserts data where estimates of sales exceed predefined thresholds.
+- Manages data consistency for large operations.
 
 ## Technical Debt
-| Item                                      | Severity |
-|-------------------------------------------|----------|
-| Magic Numbers                             | Medium   |
-| Minimal Error Handling                    | High     |
-| Constraint Management Risks               | High     |
+| Item | Severity |
+|------|----------|
+| Uses hard-coded thresholds without external configuration management | Medium |
+| Lacks execution logging for data processing events | High |
+| Potential risks of locking during large data population | Medium |
