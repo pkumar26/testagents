@@ -2,24 +2,31 @@
 # Application.Configuration_PopulateLargeSaleTable
 
 ## Business Purpose
-This stored procedure is tasked with populating a large sales table for analytical purposes. It handles the insertion and processing of data related to sales estimates for specific periods.
+The `Configuration_PopulateLargeSaleTable` procedure initializes and populates a table with estimated sales data for the year 2012, structured for partitioning and indexing. It manages data lineage and handles partitioned columnstore indexing for performance improvements.
 
 ## Parameters
-This procedure does not directly use any parameters but performs operations for specific pre-defined timeframes.
+| Name               | Type    | Direction | Default    |
+|--------------------|---------|-----------|------------|
+| @EstimatedRowsFor2012 | bigint | IN        | 12000000   |
 
 ## Tables
-| Table | Operations |
-|-------|------------|
-| Sales.Estimates | INSERT |
-| Sales.LargeSalesData | POPULATE |
+| Table              | Operations |
+|--------------------|------------|
+| Integration.Lineage | INSERT     |
+| Fact.Sale           | SELECT     |
+
+## Calls
+| Procedure / Function                              | Type |
+|---------------------------------------------------|------|
+| Integration.PopulateDateDimensionForYear          | EXEC |
+| Application.Configuration_ApplyPartitionedColumnstoreIndexing | EXEC |
 
 ## Business Rules
-- Inserts data where estimates of sales exceed predefined thresholds.
-- Manages data consistency for large operations.
+- Uses estimated rows for sales calculations over a given year.
+- Applies partitioned columnstore indexing for optimized data insertions and access patterns.
 
 ## Technical Debt
-| Item | Severity |
-|------|----------|
-| Uses hard-coded thresholds without external configuration management | Medium |
-| Lacks execution logging for data processing events | High |
-| Potential risks of locking during large data population | Medium |
+| Item                     | Severity |
+|--------------------------|----------|
+| Missing TRY/CATCH        | Medium   |
+| Hard-coded year          | Medium   |
