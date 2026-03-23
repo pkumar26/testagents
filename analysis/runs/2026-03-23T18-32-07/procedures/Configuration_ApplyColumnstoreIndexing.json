@@ -1,0 +1,42 @@
+{
+  "procedure_name": "Configuration_ApplyColumnstoreIndexing",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_ApplyColumnstoreIndexing.sql",
+  "domain": "reporting",
+  "purpose": "Applies columnstore indexing to specific tables for performance improvement.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.indexes", "sys.tables"],
+  "tables_written": ["Sales.OrderLines", "Sales.InvoiceLines", "Warehouse.StockItemTransactions"],
+  "dependencies": {
+    "procedures": [],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Apply indexing only if it doesn't already exist.",
+      "type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "id": "BR-002",
+      "description": "Columnstore indexing applies only if server edition supports it.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL command as a string.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

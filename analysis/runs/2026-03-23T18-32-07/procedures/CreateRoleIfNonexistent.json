@@ -1,0 +1,38 @@
+{
+  "procedure_name": "CreateRoleIfNonexistent",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/CreateRoleIfNonexistent.sql",
+  "domain": "security",
+  "purpose": "Creates a database role if it does not already exist.",
+  "parameters": {
+    "input": [
+      { "name": "@RoleName", "type": "sysname", "default": null }
+    ],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.database_principals"],
+  "tables_written": [],
+  "dependencies": {
+    "procedures": [],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Role must not exist before creation.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL command as a string.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

@@ -1,0 +1,36 @@
+{
+  "procedure_name": "Configuration_RemoveRowLevelSecurity",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_RemoveRowLevelSecurity.sql",
+  "domain": "security",
+  "purpose": "Removes row-level security configurations.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": [],
+  "tables_written": [],
+  "dependencies": {
+    "procedures": [],
+    "functions": ["Application.DetermineCustomerAccess"],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Remove specific security policy and function if they exist.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL commands as strings.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

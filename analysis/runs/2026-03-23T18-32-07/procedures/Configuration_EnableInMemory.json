@@ -1,0 +1,36 @@
+{
+  "procedure_name": "Configuration_EnableInMemory",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_EnableInMemory.sql",
+  "domain": "performance",
+  "purpose": "Enables in-memory optimized tables and functions for performance improvement.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.filegroups", "sys.tables"],
+  "tables_written": ["Warehouse.ColdRoomTemperatures", "Warehouse.VehicleTemperatures"],
+  "dependencies": {
+    "procedures": [],
+    "functions": ["Website.OrderIDList", "Website.OrderLineList", "Website.OrderList", "Website.SensorDataList"],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Create memory-optimized tables only if server edition supports it.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL commands as strings.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

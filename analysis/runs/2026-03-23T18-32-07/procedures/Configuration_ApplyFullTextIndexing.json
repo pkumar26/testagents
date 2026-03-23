@@ -1,0 +1,53 @@
+{
+  "procedure_name": "Configuration_ApplyFullTextIndexing",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_ApplyFullTextIndexing.sql",
+  "domain": "reporting",
+  "purpose": "Applies full-text indexing to improve search capabilities across various tables.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.fulltext_catalogs", "sys.fulltext_indexes"],
+  "tables_written": [
+    "[Application].People",
+    "Sales.Customers",
+    "Purchasing.Suppliers",
+    "Warehouse.StockItems"
+  ],
+  "dependencies": {
+    "procedures": [
+      "Website.SearchForPeople",
+      "Website.SearchForSuppliers",
+      "Website.SearchForCustomers",
+      "Website.SearchForStockItems",
+      "Website.SearchForStockItemsByTags"
+    ],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Full-text catalogs and indexes are created only if they do not exist.",
+      "type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "id": "BR-002",
+      "description": "Executes only if full-text is installed.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL command as a string.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

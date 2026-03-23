@@ -1,0 +1,36 @@
+{
+  "procedure_name": "Configuration_ApplyRowLevelSecurity",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_ApplyRowLevelSecurity.sql",
+  "domain": "security",
+  "purpose": "Implements row-level security for customer data based on sales territory roles.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["Application.Cities", "Application.StateProvinces"],
+  "tables_written": ["Sales.Customers"],
+  "dependencies": {
+    "procedures": [],
+    "functions": ["Application.DetermineCustomerAccess"],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Access control based on sales territory and role membership.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL command as a string.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

@@ -1,0 +1,39 @@
+{
+  "procedure_name": "AddRoleMemberIfNonexistent",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/AddRoleMemberIfNonexistent.sql",
+  "domain": "security",
+  "purpose": "Adds a user to a role if they are not already a member.",
+  "parameters": {
+    "input": [
+      { "name": "@RoleName", "type": "sysname", "default": null },
+      { "name": "@UserName", "type": "sysname", "default": null }
+    ],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.database_role_members", "sys.database_principals"],
+  "tables_written": [],
+  "dependencies": {
+    "procedures": [],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "User must not be already a member of the specified role.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL command as a string.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

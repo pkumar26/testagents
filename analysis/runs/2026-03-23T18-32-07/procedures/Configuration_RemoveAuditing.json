@@ -1,0 +1,36 @@
+{
+  "procedure_name": "Configuration_RemoveAuditing",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_RemoveAuditing.sql",
+  "domain": "security",
+  "purpose": "Removes auditing configurations from the server and database.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.database_audit_specifications", "sys.server_audit_specifications", "sys.server_audits"],
+  "tables_written": [],
+  "dependencies": {
+    "procedures": [],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Remove specified audit specifications if they exist.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL commands as strings.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

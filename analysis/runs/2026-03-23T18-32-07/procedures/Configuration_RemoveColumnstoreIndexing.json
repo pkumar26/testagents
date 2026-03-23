@@ -1,0 +1,42 @@
+{
+  "procedure_name": "Configuration_RemoveColumnstoreIndexing",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_RemoveColumnstoreIndexing.sql",
+  "domain": "performance",
+  "purpose": "Removes columnstore indexing from specific tables and replaces them with traditional indexes where applicable.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["sys.indexes", "sys.tables"],
+  "tables_written": ["Sales.OrderLines", "Sales.InvoiceLines", "Warehouse.StockItemTransactions"],
+  "dependencies": {
+    "procedures": [],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Remove columnstore indexes and convert to regular indexes if possible.",
+      "type": "explicit",
+      "confidence": "high"
+    },
+    {
+      "id": "BR-002",
+      "description": "Apply only if columnstore is supported by the edition.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL commands as strings.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}

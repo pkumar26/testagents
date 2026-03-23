@@ -1,0 +1,30 @@
+{
+  "procedure_name": "Configuration_PrepareForAzureStandard",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_PrepareForAzureStandard.sql",
+  "domain": "performance",
+  "purpose": "Removes features not supported in Azure SQL Database Standard tier.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": [],
+  "tables_written": [],
+  "dependencies": {
+    "procedures": ["Configuration_RemoveColumnstoreIndexing", "Configuration_DisableInMemory"],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Disables unsupported features for compatibility with Azure SQL Standard.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [],
+  "confidence": "high",
+  "unknowns": []
+}

@@ -1,0 +1,40 @@
+{
+  "procedure_name": "Configuration_DisableInMemory",
+  "file_path": "wwi-ssdt/wwi-ssdt/Application/Stored Procedures/Configuration_DisableInMemory.sql",
+  "domain": "performance",
+  "purpose": "Disables in-memory optimized tables and structures, converting to traditional disk-based tables.",
+  "parameters": {
+    "input": [],
+    "output": [],
+    "result_sets": []
+  },
+  "tables_read": ["Warehouse.ColdRoomTemperatures", "Warehouse.VehicleTemperatures"],
+  "tables_written": ["Warehouse.VehicleTemperatures_Staging", "Warehouse.ColdRoomTemperatures_Staging"],
+  "dependencies": {
+    "procedures": [
+      "Website.InvoiceCustomerOrders",
+      "Website.InsertCustomerOrders",
+      "Website.RecordColdRoomTemperatures"
+    ],
+    "functions": [],
+    "views": [],
+    "triggers": []
+  },
+  "business_rules": [
+    {
+      "id": "BR-001",
+      "description": "Convert memory-optimized tables to disk-based if they are not already.",
+      "type": "explicit",
+      "confidence": "high"
+    }
+  ],
+  "technical_debt": [
+    {
+      "category": "dynamic_sql",
+      "description": "Constructs SQL command as a string.",
+      "severity": "high"
+    }
+  ],
+  "confidence": "high",
+  "unknowns": []
+}
