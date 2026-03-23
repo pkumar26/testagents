@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-03-23T18-32-07",
+  "source_repository": "lowtouch-ai/wideworldimporters-mssql",
+  "total_procedures": 14,
+  "procedures": [
+    "AddRoleMemberIfNonexistent",
+    "Configuration_ApplyAuditing",
+    "Configuration_ApplyColumnstoreIndexing",
+    "Configuration_ApplyFullTextIndexing",
+    "Configuration_ApplyPartitioning",
+    "Configuration_ApplyRowLevelSecurity",
+    "Configuration_ConfigureForEnterpriseEdition",
+    "Configuration_DisableInMemory",
+    "Configuration_EnableInMemory",
+    "Configuration_PrepareForAzureStandard",
+    "Configuration_RemoveAuditing",
+    "Configuration_RemoveColumnstoreIndexing",
+    "Configuration_RemoveRowLevelSecurity",
+    "CreateRoleIfNonexistent"
+  ],
+  "domain_summary": {
+    "security": 4,
+    "reporting": 2,
+    "performance": 5
+  },
+  "cross_procedure_dependencies": [
+    {
+      "caller": "Configuration_ApplyFullTextIndexing",
+      "callee": "Website.SearchForPeople"
+    },
+    {
+      "caller": "Configuration_ApplyFullTextIndexing",
+      "callee": "Website.SearchForSuppliers"
+    },
+    {
+      "caller": "Configuration_ApplyFullTextIndexing",
+      "callee": "Website.SearchForCustomers"
+    },
+    {
+      "caller": "Configuration_ApplyFullTextIndexing",
+      "callee": "Website.SearchForStockItems"
+    },
+    {
+      "caller": "Configuration_ApplyFullTextIndexing",
+      "callee": "Website.SearchForStockItemsByTags"
+    },
+    {
+      "caller": "Configuration_DisableInMemory",
+      "callee": "Website.InvoiceCustomerOrders"
+    },
+    {
+      "caller": "Configuration_DisableInMemory",
+      "callee": "Website.InsertCustomerOrders"
+    },
+    {
+      "caller": "Configuration_DisableInMemory",
+      "callee": "Website.RecordColdRoomTemperatures"
+    },
+    {
+      "caller": "Configuration_ConfigureForEnterpriseEdition",
+      "callee": "Configuration_ApplyColumnstoreIndexing"
+    },
+    {
+      "caller": "Configuration_ConfigureForEnterpriseEdition",
+      "callee": "Configuration_ApplyFullTextIndexing"
+    },
+    {
+      "caller": "Configuration_ConfigureForEnterpriseEdition",
+      "callee": "Configuration_EnableInMemory"
+    },
+    {
+      "caller": "Configuration_ConfigureForEnterpriseEdition",
+      "callee": "Configuration_ApplyPartitioning"
+    }
+  ]
+}
